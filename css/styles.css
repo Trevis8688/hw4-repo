@@ -3,19 +3,21 @@
 :root {
     --primary-font: 'Noto Sans JP', sans-serif;
     --secondary-font: 'Josefin Sans', sans-serif;
-    --background-color: color-mix(in srgb, var(--accent-color), white 80%);
-    --background-secondary: #f8f9fa;
+    --nav-color: #95c7ff;
+    --background-color: #ffffff;
+    --background-secondary: #f3f3f3;
     --border-primary: color-mix(in srgb, var(--background-secondary), black 20%);
     --accent-color: #007bff;
     --accent-dark: color-mix(in srgb, var(--accent-color), black 30%);
 }
+
 * {
     font-family: var(--primary-font), sans-serif;
-
 }
 
 body {
     animation: fadeIn 0.3s ease-in-out;
+    background-color: var(--background-color);
 }
 
 @keyframes fadeIn {
@@ -29,7 +31,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
-    background-color: var(--background-color);
+    background-color: var(--nav-color);
     border-bottom: 2px solid #bbb;
     width: 97dvw;
 }
@@ -70,41 +72,6 @@ body {
     display: block;
     margin: 0 auto;
     margin-bottom: 10px;
-}
-
-/* Medium Screens - Tablet (768px - 1024px) */
-@media (max-width: 1024px) {
-    .profile-pic img {
-        max-width: 200px;
-    }
-
-    .projects {
-        display: flex;
-        flex-direction: column;
-    }
-}
-
-/* Small Screens / Mobile Device (Under 768px) */
-@media (max-width: 768px) {
-    .nav-links {
-        display: none;
-        /*flex-direction: column;*/
-        /*background: var(--background-color);*/
-        /*position: absolute;*/
-        /*top: 60px;*/
-        /*right: 0;*/
-        /*width: 100%;*/
-        /*text-align: center;*/
-        /*padding: 20px 0;*/
-    }
-
-    .hamburger {
-        display: block; /* Show hamburger icon */
-    }
-
-    .profile-pic img {
-        max-width: 150px; /* Even smaller for phones */
-    }
 }
 
 
@@ -212,6 +179,82 @@ section:has(img) {
     padding-left: 15px;
 }
 
+
+
+
+/* Contact Form */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+}
+/* Labels */
+
+.contact-form * {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+/* Required Asterisk */
+.contact-form label::after {
+    content: " *";
+    color: red;
+}
+
+/* Inputs, Select, and Textarea */
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+    width: 30%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid var(--border-primary);
+    border-radius: 4px;
+}
+
+/* Textarea */
+.contact-form textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Error & Info Messages */
+.contact-form .error-message,
+.contact-form .info-message {
+    font-size: 0.9rem;
+    color: red;
+    margin-top: 5px;
+}
+
+ /*Submit Button*/
+.contact-form button {
+    width: 30%;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+
+/* Highlight invalid fields */
+input:user-invalid,
+textarea:user-invalid {
+    border: 1px solid red;
+}
+
+/* Highlight valid fields */
+input:valid,
+textarea:valid {
+    border: 1px solid green;
+}
+
+/* Style required fields */
+input:required,
+textarea:required,
+select:required {
+    border-left: 4px solid var(--accent-color);
+}
+
+
+
 /* Button */
 button {
     width: 20rem;
@@ -266,7 +309,7 @@ th {
 
 td {
     padding: 8px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid var(--border-primary);
 }
 
 dl {
@@ -287,6 +330,100 @@ dd {
     font-size: 1rem;
 }
 
+
+.switch {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    display: inline-block;
+    height: 34px;
+    margin: 7px;
+}
+
+.switch input {
+    display: none;
+}
+
+.slider {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    background-color: #ccc;
+    border-radius: 34px;
+}
+
+.slider:before{
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    border-radius: 50%;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+input:checked + .slider {
+    background-color: red;
+}
+
+
+
+
+/* Medium Screens - Tablet (768px - 1024px) */
+@media (max-width: 1024px) {
+    .profile-pic img {
+        max-width: 200px;
+    }
+
+    .projects {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .contact-form button,
+    .contact-form input,
+    .contact-form select,
+    .contact-form textarea {
+        width: 50%;
+    }
+
+}
+
+/* Small Screens / Mobile Device (Under 768px) */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        /*flex-direction: column;*/
+        /*background: var(--background-color);*/
+        /*position: absolute;*/
+        /*top: 60px;*/
+        /*right: 0;*/
+        /*width: 100%;*/
+        /*text-align: center;*/
+        /*padding: 20px 0;*/
+    }
+
+    .hamburger {
+        display: block; /* Show hamburger icon */
+    }
+
+    .profile-pic img {
+        max-width: 150px; /* Even smaller for phones */
+    }
+
+    .contact-form button,
+    .contact-form input,
+    .contact-form select,
+    .contact-form textarea {
+        width: 70%;
+    }
+}
 
 
 

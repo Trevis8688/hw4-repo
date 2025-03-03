@@ -6,6 +6,8 @@
     <meta name="description" content="Contact Trevor Duong">
     <title>Contact - Trevor Duong</title>
     <link rel="stylesheet" href="css/styles.css">
+    <script src="js/script.js" defer></script>
+    <script src="js/theme.js" defer></script>
 </head>
 <body>
 
@@ -21,6 +23,12 @@
         <li><a href="contact.html">Contact</a></li>
         <li><a href="resume.html">Resume</a></li>
         <li><a href="lab.html">Lab</a></li>
+        <li>
+            <label class="switch">
+                <input type="checkbox" id="themeToggle" onclick="toggleTheme()">
+                <span class="slider"></span>
+            </label>
+        </li>
     </ul>
 </nav>
 
@@ -57,15 +65,17 @@
     <!-- Contact Form -->
     <section class="contact-form">
         <h2>Send Me a Message</h2>
-        <form action="#" method="POST">
+        <form action="https://httpbin.org/post" method="POST" novalidate>
             <fieldset>
                 <legend>Your Contact Info</legend>
 
                 <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required><br><br>
+                <input type="text" id="name" name="name" required minlength="2" maxlength="50">
+                <output class="error-message" id="name-error" ></output>
 
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required><br><br>
+                <input type="email" id="email" name="email" required>
+                <output class="error-message" id="email-error"></output>
 
                 <label for="reason">Reason for Contact:</label>
                 <select id="reason" name="reason">
@@ -76,15 +86,23 @@
                     <optgroup label="Other">
                         <option value="general">General Inquiry</option>
                     </optgroup>
-                </select><br><br>
+                </select>
 
-                <label for="message">Your Message:</label><br>
-                <textarea id="message" name="message" rows="4" required></textarea><br><br>
+                <label for="message">Your Message:</label>
+                <textarea id="message" name="message" rows="4" required minLength="10" maxLength="200"></textarea>
+                <output class="info-message" id="char-count">Characters remaining: 200</output>
+                <output class="error-message" id="message-error"></output>
 
-                <button >Send Message</button>
+                <!-- Hidden Field for Bot Detection -->
+                <input type="hidden" name="possible_bot" value="true">
+                <input type="hidden" id="form-errors" name="form-errors">
+
+
+                <button type="submit">Send Message</button>
             </fieldset>
         </form>
     </section>
+
 
     <!-- FAQ Section with <details> & <summary> -->
     <section>
